@@ -1,16 +1,4 @@
 # social_app
+Mobile Social App using flutter an firebase.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I worked a lot on this app and struggled throughout but have learned a lot as well. I know you said technically no late work so I submitted anyway. Let me know what to do better in the future.
