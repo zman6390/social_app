@@ -21,18 +21,6 @@ class social_app extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.generateRoute,
-        /*home: FutureBuilder<FirebaseApp>(
-        future: _initializer,
-        builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return Driver();
-          } else {
-            return const Loading();
-          }
-        },
-      ),
-    );
-  } */
         home: FutureBuilder(
             future: _initializer,
             builder: (context, AsyncSnapshot<FirebaseApp> snapshot) {

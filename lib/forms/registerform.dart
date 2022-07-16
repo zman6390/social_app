@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:social_app/forms/loginform.dart';
+import 'package:social_app/services/database.dart';
 import 'package:social_app/shared.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final DatabaseService _db = DatabaseService();
   bool loading = false;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
@@ -139,10 +140,11 @@ class _RegisterFormState extends State<RegisterForm> {
             await _auth.createUserWithEmailAndPassword(
                 email: _email.text, password: _password.text);
 
+        registerResponse.user!.updateDisplayName(_username.text);
+
         _db
-            .collection("users")
-            .doc(registerResponse.user!.uid)
-            .set({"name": _username.text, "bio": _bio.text})
+            .setUser(registerResponse.user!.uid, _username.text, _email.text,
+                _bio.text)
             .then((value) => snackBar(context, "User registered successfully."))
             .catchError((error) => snackBar(context, "FAILED. $error"));
 

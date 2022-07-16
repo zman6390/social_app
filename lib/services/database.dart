@@ -59,8 +59,10 @@ class DatabaseService {
     return User.fromMap(snapshot.id, (snapshot.data()!));
   }
 
-  Future<void> setUser(String uid, String displayName, String email) async {
+  Future<void> setUser(
+      String uid, String displayName, String email, String bio) async {
     await _firestore.collection("users").doc(uid).set({
+      "bio": bio,
       "name": displayName,
       "type": "USER",
       "email": email,
@@ -69,9 +71,10 @@ class DatabaseService {
     return;
   }
 
-  Future<void> addPost(String uid, String message) async {
+  Future<void> addPost(String uid, String message, String display_name) async {
     await _firestore.collection("posts").add({
       'message': message,
+      'display_name': display_name,
       'type': 0,
       'owner': uid,
       "created": DateTime.now()

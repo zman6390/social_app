@@ -55,13 +55,14 @@ class _PostFormState extends State<PostForm> {
   void postMessage() async {
     var post = message.text.trim();
     if (post.isNotEmpty) {
-      await db.addPost(auth.currentUser!.uid, post);
+      User user = auth.currentUser!;
+      await db.addPost(user.uid, post, user.displayName!);
       // ignore: use_build_context_synchronously
       snackBar(context, "Message successfully added.");
       // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     } else {
-      snackBar(context, "Message not formated properly.");
+      snackBar(context, "Message not formatted properly.");
       setState(() {
         loading = false;
       });

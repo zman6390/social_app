@@ -1,10 +1,11 @@
 import 'package:social_app/forms/postform.dart';
 import 'package:social_app/models/post.dart';
+import 'package:social_app/pages/profile_loading_page.dart';
+import 'package:social_app/pages/profile_page.dart';
 import 'package:social_app/pages/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_app/services/database.dart';
-import 'package:intl/intl.dart';
 import '../services/database.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,17 +28,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(actions: [
-          IconButton(
-            onPressed: () {
-              setState(() {
+        appBar: AppBar(
+            title: Text("Post Stream!",
+                style: TextStyle(fontSize: 40, fontFamily: "Signatra")),
+            backgroundColor: Colors.redAccent,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.account_circle),
+                onPressed: () async {
+                  /*setState(() {
                 loading = true;
-                logout();
-              });
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ]),
+                logout(); 
+              }); */
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => ProfileLoader(
+                                user_uid: auth.currentUser!.uid,
+                              )));
+                },
+              ),
+              IconButton(
+                  icon: Icon(Icons.logout_rounded),
+                  onPressed: () async {
+                    setState(() {
+                      loading = true;
+                      logout();
+                    });
+                  })
+            ]),
+        backgroundColor: Colors.lightBlueAccent,
         body: StreamBuilder<List<Post>>(
           stream: db.posts,
           builder: (context, snapshot) {
@@ -47,24 +67,42 @@ class _HomePageState extends State<HomePage> {
               );
             } else {
               var posts = snapshot.data ?? [];
-
               return posts.isNotEmpty
                   ? ListView.builder(
                       itemCount: posts.length,
                       itemBuilder: (BuildContext context, int index) {
+                        String user_uid = posts[index].owner;
+                        String user_name = posts[index].display_name;
+                        String date = DateTime.fromMillisecondsSinceEpoch(
+                                posts[index].created.millisecondsSinceEpoch)
+                            .toString();
+                        // db.getUser(posts[index].owner).then((value) {
+                        //   setState(() {
+                        //     userName = value.name;
+                        //   });
+                        // });
                         return Card(
                             elevation: 5.0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(posts[index].message +
-                                  "\n" +
-                                  (new DateTime.fromMillisecondsSinceEpoch(
-                                          posts[index]
-                                              .created
-                                              .millisecondsSinceEpoch)
-                                      .toString()) +
-                                  " " +
-                                  posts[index].owner),
+                            child: InkWell(
+                              onTap: () async {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            ProfileLoader(
+                                              user_uid: user_uid,
+                                            )));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                    "${posts[index].message}\n$date\n$user_name"),
+                                /*((db.getUser(posts[index].owner) != null)
+                                      ? db
+                                          .getUser(posts[index].owner)
+                                          .asStream().first.
+                                      : posts[index].owner)*/
+                              ),
                             ));
                       })
                   : const Center(
@@ -91,7 +129,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void messagePopUp() {
+  void messagePopUp() async {
     showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {

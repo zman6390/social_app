@@ -21,4 +21,8 @@ class Driver extends StatelessWidget {
       return const RegisterPage();
     }
   }
+
+  Future getCurrentUser() async {
+    return _auth.currentUser;
+  }
 }
