@@ -1,14 +1,8 @@
-import 'dart:collection';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
-import 'package:social_app/models/user.dart';
-import 'package:social_app/widgets/Loading.dart';
-import 'package:social_app/pages/profile_page.dart';
 import 'package:social_app/pages/chat_page.dart';
 import 'package:social_app/services/database.dart';
-import 'package:social_app/pages/profile_loading_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatView extends StatefulWidget {
   final String chat_ident;

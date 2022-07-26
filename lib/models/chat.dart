@@ -1,4 +1,4 @@
-import 'dart:collection';
+import 'package:flutter/material.dart';
 
 class Chat_blueprint {
   //The name the user displays to other users

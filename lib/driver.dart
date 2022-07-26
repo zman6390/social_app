@@ -2,7 +2,6 @@ import 'package:social_app/pages/home.dart';
 import 'package:social_app/pages/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:social_app/services/database.dart';
 
 class Driver extends StatelessWidget {
   Driver({Key? key}) : super(key: key);

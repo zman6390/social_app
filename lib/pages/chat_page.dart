@@ -2,10 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_app/pages/rating_page.dart';
 import 'package:social_app/services/database.dart';
-import 'package:social_app/forms/postform.dart';
-import 'package:social_app/models/post.dart';
 import 'package:social_app/models/message.dart';
-import 'package:social_app/widgets/rating.dart';
 import '../widgets/Loading.dart';
 
 class Chat_page extends StatefulWidget {

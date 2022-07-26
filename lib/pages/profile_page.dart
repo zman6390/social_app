@@ -1,12 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:social_app/widgets/provider.dart';
-import 'package:social_app/driver.dart';
 import '../models/post.dart';
 import '../services/database.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class ProfilePage extends StatelessWidget {
   final String name;

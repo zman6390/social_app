@@ -1,5 +1,4 @@
 import 'package:social_app/pages/home.dart';
-import 'package:social_app/shared.dart';
 import 'package:social_app/forms/registerform.dart';
 import 'package:flutter/material.dart';
 

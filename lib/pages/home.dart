@@ -1,9 +1,7 @@
 import 'package:social_app/forms/postform.dart';
 import 'package:social_app/models/post.dart';
-import 'package:social_app/pages/chat_page.dart';
 import 'package:social_app/pages/groups.dart';
 import 'package:social_app/pages/profile_loading_page.dart';
-import 'package:social_app/pages/profile_page.dart';
 import 'package:social_app/pages/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

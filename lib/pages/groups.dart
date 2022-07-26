@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_app/services/database.dart';
-import 'package:social_app/models/post.dart';
-import 'package:social_app/pages/chat_page.dart';
 import 'package:social_app/widgets/chatting.dart';
 import 'package:social_app/models/chat.dart';
 import '../widgets/Loading.dart';
