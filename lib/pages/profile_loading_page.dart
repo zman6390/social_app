@@ -30,6 +30,7 @@ class ProfileLoader extends StatelessWidget {
                 name: user.name,
                 email: user.email,
                 bio: user.bio,
+                rating: user.rating_average,
                 user_uid: user_uid)));
   }
 }

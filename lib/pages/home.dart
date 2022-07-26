@@ -1,5 +1,7 @@
 import 'package:social_app/forms/postform.dart';
 import 'package:social_app/models/post.dart';
+import 'package:social_app/pages/chat_page.dart';
+import 'package:social_app/pages/groups.dart';
 import 'package:social_app/pages/profile_loading_page.dart';
 import 'package:social_app/pages/profile_page.dart';
 import 'package:social_app/pages/register.dart';
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
             title: Text("Post Stream!",
@@ -34,12 +37,16 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.redAccent,
             actions: [
               IconButton(
+                  icon: Icon(Icons.message_outlined),
+                  onPressed: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Groups_page()));
+                  }),
+              IconButton(
                 icon: Icon(Icons.account_circle),
                 onPressed: () async {
-                  /*setState(() {
-                loading = true;
-                logout(); 
-              }); */
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -55,10 +62,10 @@ class _HomePageState extends State<HomePage> {
                       loading = true;
                       logout();
                     });
-                  })
+                  }),
             ]),
         backgroundColor: Colors.lightBlueAccent,
-        body: StreamBuilder<List<Post>>(
+        body: (StreamBuilder<List<Post>>(
           stream: db.posts,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -76,11 +83,7 @@ class _HomePageState extends State<HomePage> {
                         String date = DateTime.fromMillisecondsSinceEpoch(
                                 posts[index].created.millisecondsSinceEpoch)
                             .toString();
-                        // db.getUser(posts[index].owner).then((value) {
-                        //   setState(() {
-                        //     userName = value.name;
-                        //   });
-                        // });
+
                         return Card(
                             elevation: 5.0,
                             child: InkWell(
@@ -97,11 +100,6 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text(
                                     "${posts[index].message}\n$date\n$user_name"),
-                                /*((db.getUser(posts[index].owner) != null)
-                                      ? db
-                                          .getUser(posts[index].owner)
-                                          .asStream().first.
-                                      : posts[index].owner)*/
                               ),
                             ));
                       })
@@ -110,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                     );
             }
           },
-        ),
+        )),
         floatingActionButton: FloatingActionButton(
           onPressed: messagePopUp,
           tooltip: 'Post Message',

@@ -13,11 +13,13 @@ class ProfilePage extends StatelessWidget {
   final String bio;
   final String email;
   final String user_uid;
+  final double rating;
 
   ProfilePage(
       {required this.name,
       required this.bio,
       required this.email,
+      required this.rating,
       required this.user_uid});
 
   static const String routeName = '/profile';
@@ -41,7 +43,7 @@ class ProfilePage extends StatelessWidget {
 
   Widget UserInfo() {
     return ListView.builder(
-        itemCount: 3,
+        itemCount: 4,
         itemBuilder: (BuildContext context, int index) {
           String text = "none";
           switch (index) {
@@ -56,6 +58,9 @@ class ProfilePage extends StatelessWidget {
               break;
             case 2:
               text = "bio: $bio"; // + DatabaseService(_auth.currentUser!.uid);
+              break;
+            case 3:
+              text = "rating: $rating";
               break;
           }
           return Card(
