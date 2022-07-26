@@ -78,9 +78,6 @@ class GroupState extends State<Groups_page> {
 
   List<String> getUsers(Set<String> users) {
     List<String> user_ids = [];
-    // users.map((e) => e.replaceAll(RegExp(r"\p{P}", unicode: true), ""));
-    // users.removeWhere((element) => element == _auth.currentUser!.uid);
-    // return users.join(", ");
 
     users.forEach((u) {
       var user_id_without_brackets =
@@ -90,14 +87,5 @@ class GroupState extends State<Groups_page> {
       }
     });
     return user_ids;
-
-    // for (var u in users) {
-    //   var user_id_without_brackets =
-    //       u.replaceAll(RegExp(r"\p{P}", unicode: true), "");
-    //   if (user_id_without_brackets != _auth.currentUser!.uid) {
-    //     user_ids += user_id_without_brackets.toString();
-    //   }
-    // }
-    // return "";
   }
 }

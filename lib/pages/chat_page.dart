@@ -71,7 +71,7 @@ class Chat_pageState extends State<Chat_page> {
                                 var colorTile;
                                 if (messages[index].from ==
                                     _auth.currentUser!.uid) {
-                                  colorTile = Colors.red;
+                                  colorTile = Colors.orange;
                                 } else {
                                   colorTile = Colors.blue;
                                 }
